@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react'
 import './App.css';
 
+import Search from './components/Search'
+import List from './components/List'
+
 function App() {
+  const [search, setSearch] = useState('')
+  const [emojis, setEmojis] = useState([])
+
+  let url = `https://emoji-api.com/emojis?search=${search}&access_key=24deeed82b2527eeb42354b226b82ce37900f8bb`
+
+  useEffect(async () => {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setEmojis(data));
+  }, [])
+
+  useEffect(() => {
+    console.log(emojis)
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search
+        setSearch={setSearch}
+        search={search}
+      />
+      <List
+        emojis={emojis}
+      />
     </div>
   );
 }
