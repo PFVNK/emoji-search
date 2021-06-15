@@ -6,7 +6,7 @@ function Search({
 }) {
 
   const handleChange = e => {
-    setSearch(search)
+    setSearch(e.target.value)
   }
 
   return (
@@ -17,7 +17,6 @@ function Search({
           type="text"
           value={search}
           onChange={handleChange}
-
         />
       </div>
     </div>

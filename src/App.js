@@ -11,13 +11,16 @@ function App() {
   let url = `https://emoji-api.com/emojis?search=${search}&access_key=24deeed82b2527eeb42354b226b82ce37900f8bb`
 
   useEffect(async () => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setEmojis(data));
-  }, [])
+    if (search.length) {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => setEmojis(data));
+    }
+  })
 
   useEffect(() => {
     console.log(emojis)
+    console.log(search)
   })
 
   return (
