@@ -16,11 +16,11 @@ function App() {
         .then(response => response.json())
         .then(data => setEmojis(data));
     }
-  })
+  }, [search])
 
   useEffect(() => {
-    console.log(emojis)
-    console.log(search)
+    // console.log(emojis)
+    // console.log(search)
   })
 
   return (
